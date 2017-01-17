@@ -1,6 +1,6 @@
 public class Cat{
 	public String name;
-	public static String noise;
+	public static String noise;  //note : static
 	
 	public Cat(String name, String noise){
 		this.name = name;
