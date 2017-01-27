@@ -10,11 +10,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    public int head;
+    private int head;
     /**
      * Remaining elements of list.
      */
-    public IntList tail;
+    private IntList tail;
 
     /**
      * A List with head HEAD0 and tail TAIL0.
@@ -80,9 +80,8 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
         IntList ptr = A;
-        while(ptr.tail != null){
+        while (ptr.tail != null) {
             ptr = ptr.tail;
         }
         ptr.tail = B;
@@ -94,11 +93,10 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
         IntList res = new IntList(A.head, null);
         IntList ptr = res;
         A = A.tail;
-        while(A != null){
+        while (A != null) {
             ptr.tail = new IntList(A.head, null);
             ptr = ptr.tail;
             A = A.tail;
@@ -112,10 +110,10 @@ public class IntList {
      * This method is destructive. If given null
      * as an input, returns null.
      */
-    public static IntList reverse(IntList A){
+    public static IntList reverse(IntList A) {
         IntList p = null;
         IntList q = A;
-        while(q != null){
+        while (q != null) {
             IntList r = q.tail;
             q.tail = p;
             p = q;
@@ -195,26 +193,28 @@ public class IntList {
         IntList tortoise = A;
         IntList hare = A;
 
-        if (A == null)
+        if (A == null) {
             return 0;
-
+		}
         int cnt = 0;
 
 
         while (true) {
             cnt++;
-            if (hare.tail != null)
+            if (hare.tail != null) {
                 hare = hare.tail.tail;
-            else
+			} else {
                 return 0;
-
+			}
+            
             tortoise = tortoise.tail;
 
-            if (tortoise == null || hare == null)
+            if (tortoise == null || hare == null) {
                 return 0;
-
-            if (hare == tortoise)
+			}
+            if (hare == tortoise) {
                 return cnt;
+			}
         }
     }
 
@@ -242,4 +242,3 @@ public class IntList {
         return out.toString();
     }
 }
-
