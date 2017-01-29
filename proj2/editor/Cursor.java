@@ -61,4 +61,19 @@ public class Cursor extends Rectangle {
         timeline.play();
     }
 
+    public void showCursor(double x, double y, double height) {
+        setCursorHeight(height);
+        setX(x);
+        setY(y);
+    }
+
+    public void showCursor(Node x, double height) {
+        setCursorHeight(height);
+        double currentX = x.text.getX();
+        double currentY = x.text.getY();
+        double charWidth = x.text.getLayoutBounds().getWidth();
+        setX(currentX + charWidth);
+        setY(currentY);
+    }
+
 }

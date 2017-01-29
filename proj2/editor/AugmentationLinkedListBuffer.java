@@ -9,8 +9,7 @@ import java.util.Iterator;
  */
 public class AugmentationLinkedListBuffer implements Iterable<Node> {
 
-    private Node sentinel;     //Sentinel node for the linked list
-    private int currentPos;    //Character number in the buffer
+    private Node sentinel;     //sentinel node for the linked list
     private Node currentNode;  //Current node to be inserted after
     private ArrayList<Node> lineList;//the lineList record the AugmentationLinkedListBuffer start line node
     public String fontName = "Verdana";
@@ -18,11 +17,14 @@ public class AugmentationLinkedListBuffer implements Iterable<Node> {
 
     /** the constructor */
     public AugmentationLinkedListBuffer(){
-        currentPos = 0;
         sentinel = new Node();
         currentNode = sentinel;
         lineList = new ArrayList<Node>(10);
         lineList.add(sentinel);   //the 0th line
+    }
+
+    public Node getTail () {
+        return sentinel.prev;
     }
 
     /** add the char x behind the currentNode and update the val "currentNode" and "currentPos"*/
@@ -35,28 +37,43 @@ public class AugmentationLinkedListBuffer implements Iterable<Node> {
         nextNode.prev = nodeToInsert;
         nodeToInsert.prev = currentNode;
         currentNode = nodeToInsert;
-        currentPos += 1;
     }
 
     /** delete the Node of the currentNode ,if the buffer is not empty */
-    public void deleteChar(){
-        if (currentPos == 0) {
-            return;
+    public Node deleteChar(){
+        if (currentNode == sentinel) {
+            return null;
         }
+        Node nodeToRemove = currentNode;
         currentNode.prev.next = currentNode.next;
         currentNode.next = currentNode.prev;
         currentNode = currentNode.prev;
-        currentPos -= 1;
+        return nodeToRemove;
     }
 
-    /** return the currentPos */
-    public int getCurrentPos(){
-        return currentPos;
-    }
 
     /** return the currentNode */
     public Node getCurrentNode() {
         return currentNode;
+    }
+
+    /**set currentNode*/
+    public void setCurrentNode(Node n) {
+        currentNode = n;
+    }
+
+    /**set currentNode to the next*/
+    public void setCurrentNodeNext() {
+        if (currentNode.next != sentinel) {
+            currentNode = currentNode.next;
+        }
+    }
+
+    /**set currentNode to the prev*/
+    public void setCurrentNodePrev() {
+        if (currentNode.prev != sentinel) {
+            currentNode = currentNode.prev;
+        }
     }
 
     /** return the pointer of the start node of ith line, the line count start 0*/
@@ -67,13 +84,17 @@ public class AugmentationLinkedListBuffer implements Iterable<Node> {
         return lineList.get(i);
     }
 
+    /**clear the lineList s.t. only record the 0th line*/
     public void lineListClear() {
         lineList = new ArrayList<Node>(10);
         lineList.add(sentinel);   //the 0th line
     }
 
+    /** add new line start node to the lineList, the node is n.next*/
     public void addLineList(Node n) {
-        lineList.add(n);
+        if (n != sentinel) {
+            lineList.add(n);
+        }
     }
 
     public void incFontSizeBy4() {

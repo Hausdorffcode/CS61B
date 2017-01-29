@@ -23,6 +23,7 @@ public class Node{
     Node prev, next;
 
     public Node(){
+        this.text = new Text(" ");
         this.next = this;
         this.prev = this;
     }
