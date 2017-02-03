@@ -103,6 +103,7 @@ public class Percolation {
 
     /**unit testing (not required)*/
     public static void main(String[] args) {
-
+        System.out.println(-4 % 3);
+        System.out.println(Math.abs(Integer.MAX_VALUE));
     }
 }                       
