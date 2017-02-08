@@ -28,7 +28,23 @@ public class TestComplexOomage {
          * and ensure that no bucket has fewer than N / 50
          * Oomages and no bucket has more than N / 2.5 Oomages.
          */
-        return false;
+        int N = oomages.size();
+        int M = 10;
+        int[] buckets = new int[M];
+        for (int i = 0; i < M; i++) {
+            buckets[i] = 0;
+        }
+        for (Oomage oo : oomages) {
+            int hashcode = oo.hashCode() % M;
+            buckets[hashcode]++;
+        }
+        boolean isTrue = true;
+        for (int i : buckets) {
+            if (i > N / 2.5 || i < N / 50) {
+                isTrue = false;
+            }
+        }
+        return isTrue;
     }
 
 

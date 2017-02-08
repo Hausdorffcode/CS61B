@@ -11,13 +11,13 @@ public class HashTableVisualizer {
            M:     number of buckets */
 
         double scale = 0.5;
-        int N = 2000;
-        int M = 100;
+        int N = 200;
+        int M = 10;
 
         HashTableDrawingUtility.setScale(scale);
         Set<Oomage> oomies = new HashSet<Oomage>();
         for (int i = 0; i < N; i += 1) {
-            oomies.add(SimpleOomage.randomSimpleOomage());
+            oomies.add(ComplexOomage.randomComplexOomage());
         }
         visualize(oomies, M, scale);
     }
